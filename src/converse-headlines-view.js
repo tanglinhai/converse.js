@@ -7,7 +7,7 @@ import "converse-chatview";
 import { View } from 'skeletor.js/src/view.js';
 import { __ } from '@converse/headless/i18n';
 import converse from "@converse/headless/converse-core";
-import tpl_chatbox from "templates/chatbox.html";
+import tpl_chatbox from "templates/chatbox.js";
 import tpl_headline_panel from "templates/headline_panel.js";
 
 const u = converse.env.utils;
@@ -141,6 +141,7 @@ converse.plugins.add('converse-headlines-view', {
                 this.render().insertHeading()
                 this.updateAfterMessagesFetched();
                 this.insertIntoDOM().hide();
+                this.model.maybeShow();
                 /**
                  * Triggered once the {@link _converse.HeadlinesBoxView} has been initialized
                  * @event _converse#headlinesBoxViewInitialized

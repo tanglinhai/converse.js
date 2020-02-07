@@ -7,8 +7,9 @@ import "converse-chatview";
 import { Model } from 'skeletor.js/src/model.js';
 import { Overview } from "skeletor.js/src/overview";
 import { View } from "skeletor.js/src/view";
+import { __ } from '@converse/headless/i18n';
+import { html } from "lit-html";
 import converse from "@converse/headless/converse-core";
-import tpl_chatbox_minimize from "templates/chatbox_minimize.html";
 import tpl_chats_panel from "templates/chats_panel.html";
 import tpl_toggle_chats from "templates/toggle_chats.html";
 import tpl_trimmed_chat from "templates/trimmed_chat.html";
@@ -73,10 +74,6 @@ converse.plugins.add('converse-minimize', {
         },
 
         ChatBoxView: {
-            events: {
-                'click .toggle-chatbox-button': 'minimize',
-            },
-
             initialize () {
                 this.listenTo(this.model, 'change:minimized', this.onMinimizedChanged)
                 return this.__super__.initialize.apply(this, arguments);
@@ -116,29 +113,21 @@ converse.plugins.add('converse-minimize', {
         },
 
         ChatBoxHeading: {
-            render () {
-                const { _converse } = this.__super__;
-                const { __ } = _converse;
-
-                this.__super__.render.apply(this, arguments);
-                const new_html = tpl_chatbox_minimize({
-                    'info_minimize': __('Minimize this chat box')
-                });
-                const el = this.el.querySelector('.toggle-chatbox-button');
-                if (el) {
-                    el.outerHTML = new_html;
-                } else {
-                    const button = this.el.querySelector('.close-chatbox-button');
-                    button.insertAdjacentHTML('afterEnd', new_html);
+            getHeadingButtons () {
+                const buttons = this.__super__.getHeadingButtons.call(this);
+                const data = {
+                    'i18n_title': __('Minimize this chat box'),
+                    'handler': ev => this.minimize(ev),
+                    'icon_class': "fa-minus",
+                    'name': 'minimize'
                 }
+                const names = buttons.map(t => t.name);
+                const idx = names.indexOf('close');
+                return idx > -1 ? [...buttons.slice(0, idx+1), data, ...buttons.slice(idx+1)] : [data, ...buttons];
             }
         },
 
         ChatRoomView: {
-            events: {
-                'click .toggle-chatbox-button': 'minimize',
-            },
-
             initialize () {
                 this.listenTo(this.model, 'change:minimized', this.onMinimizedChanged)
                 const result = this.__super__.initialize.apply(this, arguments);
@@ -148,21 +137,17 @@ converse.plugins.add('converse-minimize', {
                 return result;
             },
 
-            generateHeadingHTML () {
-                const { _converse } = this.__super__,
-                    { __ } = _converse;
-                const html = this.__super__.generateHeadingHTML.apply(this, arguments);
-                const div = document.createElement('div');
-                div.innerHTML = html;
-                const buttons_row = div.querySelector('.chatbox-title__buttons')
-                const button = buttons_row.querySelector('.close-chatbox-button');
-                const minimize_el = tpl_chatbox_minimize({'info_minimize': __('Minimize this chat box')})
-                if (button) {
-                    button.insertAdjacentHTML('afterend', minimize_el);
-                } else {
-                    buttons_row.insertAdjacentHTML('beforeEnd', minimize_el);
+            getHeadingButtons () {
+                const buttons = this.__super__.getHeadingButtons.call(this);
+                const data = {
+                    'i18n_title': __('Minimize this groupchat'),
+                    'handler': ev => this.minimize(ev),
+                    'icon_class': "fa-minus",
+                    'name': 'minimize'
                 }
-                return div.innerHTML;
+                const names = buttons.map(t => t.name);
+                const idx = names.indexOf('signout');
+                return idx > -1 ? [...buttons.slice(0, idx+1), data, ...buttons.slice(idx+1)] : [data, ...buttons];
             }
         }
     },

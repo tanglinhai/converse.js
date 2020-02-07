@@ -275,6 +275,11 @@ u.hasClass = function (className, el) {
     return (el instanceof Element) && el.classList.contains(className);
 };
 
+
+u.toggleClass = function (className, el) {
+    u.hasClass(className, el) ? u.removeClass(className, el) : u.addClass(className, el);
+}
+
 /**
  * Add a class to an element.
  * @method u#addClass
@@ -357,6 +362,11 @@ u.escapeHTML = function (string) {
         .replace(/>/g, "&gt;")
         .replace(/"/g, "&quot;");
 };
+
+
+u.isMeCommand = function (text) {
+    return text && text.startsWith('/me ');
+}
 
 
 u.addMentionsMarkup = function (text, references, chatbox) {
