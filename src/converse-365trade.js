@@ -30,8 +30,7 @@ converse.plugins.add('converse-365trade', {
 
         /************************ BEGIN Event Handlers ************************/
         _converse.api.listen.on('message', function (messageXML) {
-          console.log('messageXML:', messageXML);
-          alert(JSON.stringify(messageXML));
+          console.log('messageXML:', JSON.parse(messageXML.stanza.textContent));
         });
         _converse.api.listen.on('connected', function(){
           alert('connected');
