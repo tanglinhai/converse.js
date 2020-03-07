@@ -35,9 +35,6 @@ converse.plugins.add('converse-365trade', {
           alert('messageAdded');
           console.log(data);
         });
-        this.listenTo(this.model.messages, 'add', function(){
-          alert('listen to message');
-        });
         _converse.api.listen.on('connected', function(){
           alert('connected');
         });
