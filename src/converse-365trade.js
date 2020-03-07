@@ -10,7 +10,7 @@
  */
 import "converse-modal";
 import converse from "@converse/headless/converse-core";
-
+import { Overview } from "skeletor.js/src/overview";
 const u = converse.env.utils;
 
 
