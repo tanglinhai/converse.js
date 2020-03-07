@@ -31,9 +31,8 @@ converse.plugins.add('converse-365trade', {
         const { _converse } = this;
 
         /************************ BEGIN Event Handlers ************************/
-        _converse.api.listen.on('messageAdded', data => {
-          alert('messageAdded');
-          console.log(data);
+        _converse.api.listen.on('message', function (messageXML) {
+          alert(1111111111);
         });
         _converse.api.listen.on('connected', function(){
           alert('connected');
@@ -45,56 +44,31 @@ converse.plugins.add('converse-365trade', {
             
         });
         /************************ END API ************************/
-
-
-        /**
-         * The View of an open/ongoing chat conversation.
-         * @class
-         * @namespace _converse.ChatBoxView
-         * @memberOf _converse
+    },
+    /* If you want to override some function or a Backbone model or
+     * view defined elsewhere in Converse, then you do that under
+     * the "overrides" namespace.
+     */
+    overrides: {
+        /* For example, the private *_converse* object has a
+         * method "onConnected". You can override that method as follows:
          */
-        _converse.ChatBoxView = Overview.extend({
-          async initialize () {
-            alert(234);
-                this.initDebounced();
-                this.listenTo(this.model.messages, 'add', function(){
-                  alert('my add');
-                });
-                this.listenTo(this.model.messages, 'add', this.onMessageAdded);
-                this.listenTo(this.model.messages, 'change:edited', this.onMessageEdited);
-                this.listenTo(this.model.messages, 'rendered', this.scrollDown);
-                this.model.messages.on('reset', () => {
-                    this.content.innerHTML = '';
-                    this.removeAll();
-                });
+        onConnected: function () {
+            // Overrides the onConnected method in Converse
 
-                this.listenTo(this.model, 'change:status', this.onStatusMessageChanged);
-                this.listenTo(this.model, 'destroy', this.remove);
-                this.listenTo(this.model, 'show', this.show);
-                this.listenTo(this.model, 'vcard:change', this.renderHeading);
+            // Top-level functions in "overrides" are bound to the
+            // inner "_converse" object.
+            const _converse = this;
 
-                if (this.model.contact) {
-                    this.listenTo(this.model.contact, 'destroy', this.renderHeading);
-                }
-                if (this.model.rosterContactAdded) {
-                    this.model.rosterContactAdded.then(() => {
-                        this.listenTo(this.model.contact, 'change:nickname', this.renderHeading);
-                        this.renderHeading();
-                    });
-                }
+            // Your custom code can come here ...
 
-                this.listenTo(this.model.presence, 'change:show', this.onPresenceChanged);
-                this.render();
-                await this.updateAfterMessagesFetched();
-                this.model.maybeShow();
-                /**
-                 * Triggered once the {@link _converse.ChatBoxView} has been initialized
-                 * @event _converse#chatBoxViewInitialized
-                 * @type { _converse.HeadlinesBoxView }
-                 * @example _converse.api.listen.on('chatBoxViewInitialized', view => { ... });
-                 */
-                _converse.api.trigger('chatBoxViewInitialized', this);
-            }
-        });
+            // You can access the original function being overridden
+            // via the __super__ attribute.
+            // Make sure to pass on the arguments supplied to this
+            // function and also to apply the proper "this" object.
+            _converse.__super__.onConnected.apply(this, arguments);
+
+            // Your custom code can come here ...
+        }
     }
 });
