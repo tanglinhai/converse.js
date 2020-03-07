@@ -193,6 +193,7 @@ converse.plugins.add('converse-chatview', {
             },
 
             async initialize () {
+              alert(123);
                 this.initDebounced();
 
                 this.listenTo(this.model.messages, 'add', this.onMessageAdded);
