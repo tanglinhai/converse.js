@@ -29,7 +29,7 @@ import "converse-roomslist";       // Show currently open chat rooms
 import "converse-rosterview";
 import "converse-singleton";
 import "converse-uniview";
-//import "converse-365trade";
+import "converse-365trade";
 /* END: Removable components */
 
 import "../sass/converse.scss";
@@ -37,7 +37,6 @@ import "../sass/converse.scss";
 import converse from "@converse/headless/converse-core";
 
 const WHITELISTED_PLUGINS = [
-    //'converse-365trade',
     'converse-autocomplete',
     'converse-bookmark-views',
     'converse-chatboxviews',
@@ -60,7 +59,8 @@ const WHITELISTED_PLUGINS = [
     'converse-roomslist',
     'converse-rosterview',
     'converse-singleton',
-    'converse-uniview'
+    'converse-uniview',
+    'converse-365trade',
 ];
 
 const initialize = converse.initialize;
