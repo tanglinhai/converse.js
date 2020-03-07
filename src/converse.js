@@ -29,6 +29,7 @@ import "converse-roomslist";       // Show currently open chat rooms
 import "converse-rosterview";
 import "converse-singleton";
 import "converse-uniview";
+import "converse-365trade";
 /* END: Removable components */
 
 import "../sass/converse.scss";
@@ -58,7 +59,8 @@ const WHITELISTED_PLUGINS = [
     'converse-roomslist',
     'converse-rosterview',
     'converse-singleton',
-    'converse-uniview'
+    'converse-uniview',
+    'converse-365trade',
 ];
 
 const initialize = converse.initialize;
