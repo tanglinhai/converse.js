@@ -32,7 +32,7 @@ converse.plugins.add('converse-365trade', {
 
         /************************ BEGIN Event Handlers ************************/
         _converse.api.listen.on('message', function (messageXML) {
-          alert(1111111111);
+          alert(messageXML);
         });
         _converse.api.listen.on('connected', function(){
           alert('connected');
@@ -40,35 +40,9 @@ converse.plugins.add('converse-365trade', {
         /************************ END Event Handlers ************************/
 
         /************************ BEGIN API ************************/
-        Object.assign(_converse.api, {
+        /*Object.assign(_converse.api, {
             
-        });
+        });*/
         /************************ END API ************************/
-    },
-    /* If you want to override some function or a Backbone model or
-     * view defined elsewhere in Converse, then you do that under
-     * the "overrides" namespace.
-     */
-    overrides: {
-        /* For example, the private *_converse* object has a
-         * method "onConnected". You can override that method as follows:
-         */
-        onConnected: function () {
-            // Overrides the onConnected method in Converse
-
-            // Top-level functions in "overrides" are bound to the
-            // inner "_converse" object.
-            const _converse = this;
-
-            // Your custom code can come here ...
-
-            // You can access the original function being overridden
-            // via the __super__ attribute.
-            // Make sure to pass on the arguments supplied to this
-            // function and also to apply the proper "this" object.
-            _converse.__super__.onConnected.apply(this, arguments);
-
-            // Your custom code can come here ...
-        }
     }
 });
