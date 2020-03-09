@@ -50,7 +50,7 @@ converse.plugins.add('converse-365trade', {
         _converse.api.listen.on('message', function (messageXML) {
           console.log('messageXML:', JSON.parse(messageXML.stanza.textContent));
         });
-        _converse.api.listen.on('connected', function(){
+        _converse.api.listen.on('connected', async function(){
           alert(123);
           console.log('-------------------111111111 start-------------------');
           var chatbox = await _converse.api.chats.get();
