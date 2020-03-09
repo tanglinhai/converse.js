@@ -193,7 +193,6 @@ converse.plugins.add('converse-chatview', {
             },
 
             async initialize () {
-              alert(123);
                 this.initDebounced();
 
                 this.listenTo(this.model.messages, 'add', this.onMessageAdded);
@@ -915,7 +914,6 @@ converse.plugins.add('converse-chatview', {
              * @param { Event } ev
              */
             onKeyDown (ev) {
-              console.log('11111111111', ev);
                 if (ev.ctrlKey) {
                     // When ctrl is pressed, no chars are entered into the textarea.
                     return;

@@ -12,6 +12,7 @@ import "./headless/converse-chat";
 import "./headless/converse-disco";
 import "./headless/converse-emoji";
 import { Collection } from "skeletor.js/src/collection";
+import { Overview } from "skeletor.js/src/overview";
 import { Model } from 'skeletor.js/src/model.js';
 import { clone, debounce, get, intersection, invoke, isElement, isObject, isString, pick, uniq, zipObject } from "lodash";
 import converse from "./headless/converse-core";
@@ -46,6 +47,11 @@ converse.plugins.add('converse-365trade', {
          */
         const { _converse } = this;
 
+        _converse.ChatBoxView = Overview.extend({
+          inputChanged: function(e){
+            console.log('2222222222', e);
+          }
+        });
         /************************ BEGIN Event Handlers ************************/
         _converse.api.listen.on('message', function (messageXML) {
           console.log('messageXML:', JSON.parse(messageXML.stanza.textContent));
