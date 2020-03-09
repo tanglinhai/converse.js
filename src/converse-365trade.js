@@ -51,12 +51,12 @@ converse.plugins.add('converse-365trade', {
           console.log('messageXML:', JSON.parse(messageXML.stanza.textContent));
         });
         _converse.api.listen.on('connected', function(){
-          alert('connected');
+          console.log('-------------------111111111 start-------------------');
+          var chatbox = await _converse.api.chats.get();
+          console.log(chatbox);
+          console.log('-------------------222222222 end-1------------------');
         });
-        console.log('-------------------111111111 start-------------------');
-        var chatbox = await _converse.api.chats.get();
-        console.log(chatbox);
-        console.log('-------------------222222222 end-1------------------');
+        
         /************************ END Event Handlers ************************/
 
         /************************ BEGIN API ************************/
