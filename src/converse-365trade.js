@@ -8,15 +8,33 @@
  * @copyright 2020, the Converse.js contributors
  * @license Mozilla Public License (MPLv2)
  */
-import converse from "@converse/headless/converse-core";
-const u = converse.env.utils;
+import "./converse-chat";
+import "./converse-disco";
+import "./converse-emoji";
+import { Collection } from "skeletor.js/src/collection";
+import { Model } from 'skeletor.js/src/model.js';
+import { clone, debounce, get, intersection, invoke, isElement, isObject, isString, pick, uniq, zipObject } from "lodash";
+import converse from "./converse-core";
+import log from "./log";
+import muc_utils from "./utils/muc";
+import stanza_utils from "./utils/stanza";
+import u from "./utils/form";
+
+const MUC_ROLE_WEIGHTS = {
+    'moderator':    1,
+    'participant':  2,
+    'visitor':      3,
+    'none':         2,
+};
+
+const { Strophe, $iq, $build, $msg, $pres, sizzle } = converse.env;
 
 
 converse.plugins.add('converse-365trade', {
     // It's possible however to make optional dependencies non-optional.
     // If the setting "strict_plugin_dependencies" is set to true,
     // an error will be raised if the plugin is not found.
-    dependencies: [],
+    dependencies: ["converse-chatboxes", "converse-chat", "converse-disco", "converse-controlbox"],
 
     overrides: {
         
