@@ -22,7 +22,7 @@ converse.plugins.add('converse-365trade', {
         
     },
 
-    initialize () {
+    initialize: async function () {
         /* The initialize function gets called as soon as the plugin is
          * loaded by converse.js's plugin machinery.
          */
@@ -35,6 +35,10 @@ converse.plugins.add('converse-365trade', {
         _converse.api.listen.on('connected', function(){
           alert('connected');
         });
+        console.log('-------------------111111111 start-------------------');
+        var chatbox = await _converse.api.chats.get();
+        console.log(chatbox);
+        console.log('-------------------222222222 end-1------------------');
         /************************ END Event Handlers ************************/
 
         /************************ BEGIN API ************************/
