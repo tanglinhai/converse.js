@@ -46,8 +46,8 @@ converse.plugins.add('converse-365trade', {
          * loaded by converse.js's plugin machinery.
          */
         const { _converse } = this;
-
-        _converse.ChatBoxView = Overview.extend({
+        console.log();
+        _converse.ChatBoxView = Overview.extend(_converse.ChatBoxView, {
           inputChanged: function(e){
             console.log('2222222222', e);
           }
