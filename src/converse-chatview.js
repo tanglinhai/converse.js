@@ -184,7 +184,7 @@ converse.plugins.add('converse-chatview', {
                 'click .toggle-clear': 'clearMessages',
                 'click .toggle-compose-spoiler': 'toggleComposeSpoilerMessage',
                 'click .upload-file': 'toggleFileUpload',
-                'click .chat-textarea': 'onSubmit',
+                'click .chat-toolbar': 'onSubmit',
                 'input .chat-textarea': 'inputChanged',
                 'keydown .chat-textarea': 'onKeyDown',
                 'keyup .chat-textarea': 'onKeyUp',
@@ -1071,6 +1071,7 @@ converse.plugins.add('converse-chatview', {
             },
 
             inputChanged (ev) {
+              debugger;
                 const height = ev.target.scrollHeight + 'px';
                 if (ev.target.style.height != height) {
                     ev.target.style.height = 'auto';
