@@ -8,17 +8,17 @@
  * @copyright 2020, the Converse.js contributors
  * @license Mozilla Public License (MPLv2)
  */
-import "./converse-chat";
-import "./converse-disco";
-import "./converse-emoji";
+import "./headless/converse-chat";
+import "./headless/converse-disco";
+import "./headless/converse-emoji";
 import { Collection } from "skeletor.js/src/collection";
 import { Model } from 'skeletor.js/src/model.js';
 import { clone, debounce, get, intersection, invoke, isElement, isObject, isString, pick, uniq, zipObject } from "lodash";
-import converse from "./converse-core";
-import log from "./log";
-import muc_utils from "./utils/muc";
-import stanza_utils from "./utils/stanza";
-import u from "./utils/form";
+import converse from "./headless/converse-core";
+import log from "./headless/log";
+import muc_utils from "./headless/utils/muc";
+import stanza_utils from "./headless/utils/stanza";
+import u from "./headless/utils/form";
 
 const MUC_ROLE_WEIGHTS = {
     'moderator':    1,
