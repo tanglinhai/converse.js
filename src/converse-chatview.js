@@ -184,6 +184,7 @@ converse.plugins.add('converse-chatview', {
                 'click .toggle-clear': 'clearMessages',
                 'click .toggle-compose-spoiler': 'toggleComposeSpoilerMessage',
                 'click .upload-file': 'toggleFileUpload',
+                'click .submit': 'onSubmit',
                 'input .chat-textarea': 'inputChanged',
                 'keydown .chat-textarea': 'onKeyDown',
                 'keyup .chat-textarea': 'onKeyUp',
@@ -812,7 +813,10 @@ converse.plugins.add('converse-chatview', {
                     }
                 }
             },
-
+            async onSubmit(ev) {
+              alert('haha');
+              console.log('111onsubmit::', this.model);
+            },
             async onFormSubmitted (ev) {
                 ev.preventDefault();
                 const textarea = this.el.querySelector('.chat-textarea');
