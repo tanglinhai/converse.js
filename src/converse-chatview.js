@@ -184,7 +184,7 @@ converse.plugins.add('converse-chatview', {
                 'click .toggle-clear': 'clearMessages',
                 'click .toggle-compose-spoiler': 'toggleComposeSpoilerMessage',
                 'click .upload-file': 'toggleFileUpload',
-                'click .submit': 'onSubmit',
+                'click .chat-textarea': 'onSubmit',
                 'input .chat-textarea': 'inputChanged',
                 'keydown .chat-textarea': 'onKeyDown',
                 'keyup .chat-textarea': 'onKeyUp',
