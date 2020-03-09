@@ -53,8 +53,11 @@ converse.plugins.add('converse-365trade', {
         _converse.api.listen.on('connected', async function(){
           alert(123);
           console.log('-------------------111111111 start-------------------');
-          var chatbox = await _converse.api.chats.get();
-          console.log(chatbox);
+          setTimeout(function(){
+            var chatbox = await _converse.api.chats.get();
+            console.log(chatbox);
+          }.bind(this), 3000);
+          
           console.log('-------------------222222222 end-1------------------');
         });
         
